@@ -32,7 +32,7 @@ namespace Acme.Biz.Tests
             // Arrange
             var vendor = new Vendor();
             vendor.CompanyName = "";
-            var expected = "Message sent: Hello";
+            var expected = "Message sent: Hello ";
 
             // Act
             var actual = vendor.SendWelcomeEmail("Test Message");
@@ -47,7 +47,7 @@ namespace Acme.Biz.Tests
             // Arrange
             var vendor = new Vendor();
             vendor.CompanyName = null;
-            var expected = "Message sent: Hello";
+            var expected = "Message sent: Hello ";
 
             // Act
             var actual = vendor.SendWelcomeEmail("Test Message");
