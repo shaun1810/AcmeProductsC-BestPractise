@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acme.Common;
 
 namespace Acme.Biz
 {
@@ -11,6 +12,7 @@ namespace Acme.Biz
     /// </summary>
     public class Product
     {
+
         public Product()
         {
             Console.WriteLine("Product instance created");
@@ -48,8 +50,13 @@ namespace Acme.Biz
             set { productId = value; }
         }
 
+
         public string SayHello()
         {
+            var vendor = new Vendor();
+            var emailService = new EmailService();
+            vendor.SendWelcomeEmail("Message from the supplier");
+            emailService.SendMessage("Vendor", "New vendor", "Vendor@Argos.com");
             return "Hello " + ProductName +
                     " (" + ProductId + "): " +
                     Description;
