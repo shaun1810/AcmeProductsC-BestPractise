@@ -21,6 +21,7 @@ namespace Acme.BizTests
                 currentProduct.ProductName = "Saw";
                 currentProduct.ProductId = 1;
                 currentProduct.Description = "15-inch steel blade hand saw";
+                currentProduct.ProductVendor.CompanyName = "ABC Corp";
                 var expected = "Hello Saw (1): 15-inch steel blade hand saw";
 
                 //Act
@@ -55,7 +56,7 @@ namespace Acme.BizTests
             {
                 ProductId = 1,
                 ProductName = "Saw",
-                Description = "15-inch steel blade hand saw"
+                Description = "15-inch steel blade hand saw",
             };
 
             var expected = "Hello Saw (1): 15-inch steel blade hand saw";
