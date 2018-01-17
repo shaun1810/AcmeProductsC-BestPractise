@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Acme.Common;
+using static Acme.Common.LoggingService;
 
 namespace Acme.Biz
 {
@@ -54,9 +55,12 @@ namespace Acme.Biz
         public string SayHello()
         {
             var vendor = new Vendor();
-            var emailService = new EmailService();
             vendor.SendWelcomeEmail("Message from the supplier");
-            emailService.SendMessage("Vendor", "New vendor", "Vendor@Argos.com");
+
+            var emailService = new EmailService();
+            var confirmation = emailService.SendMessage("New Product", this.productName, "Sales@abc.com");
+            var result = LogAction("Hello");
+
             return "Hello " + ProductName +
                     " (" + ProductId + "): " +
                     Description;
