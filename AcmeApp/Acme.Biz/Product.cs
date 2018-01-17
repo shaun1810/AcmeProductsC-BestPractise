@@ -26,7 +26,7 @@ namespace Acme.Biz
             this.ProductId = productId;
             this.ProductName = productName;
             this.Description = description;
-            this.productVendor = new Vendor();
+            //this.productVendor = new Vendor();
             Console.WriteLine("Product instance has a name: " +
                                 ProductName);
         }
@@ -57,7 +57,13 @@ namespace Acme.Biz
             
         public Vendor ProductVendor
         {
-            get { return productVendor; }
+            get {
+                if (productVendor != null)
+                {
+                    this.productVendor = new Vendor();
+                }
+                 return productVendor;
+                }
             set { productVendor = value; }
         }
         
