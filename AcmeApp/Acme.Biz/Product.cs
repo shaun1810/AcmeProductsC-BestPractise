@@ -14,11 +14,14 @@ namespace Acme.Biz
     public class Product
     {
 
+        public const double inchesInMetre = 39.37;
+        public readonly decimal MinimumPrice;
 
 
         public Product()
         {
-            this.productVendor = new Vendor(); 
+            this.productVendor = new Vendor();
+            this.MinimumPrice = .96m;
             Console.WriteLine("Product instance created");
         }
         public Product(int productId,
@@ -28,6 +31,10 @@ namespace Acme.Biz
             this.ProductId = productId;
             this.ProductName = productName;
             this.Description = description;
+            if (ProductName.StartsWith("Bulk"))
+            {
+                this.MinimumPrice = 9.99m;
+            }
             //this.productVendor = new Vendor();
             Console.WriteLine("Product instance has a name: " +
                                 ProductName);
@@ -50,8 +57,24 @@ namespace Acme.Biz
 
         public string ProductName
         {
-            get { return productName; }
-            set { productName = value; }
+            get {
+                var formattedValue = productName?.Trim();
+                return formattedValue;
+            }
+
+            set {
+                if (value.Length < 3)
+                {
+                    ValidationMessage = "Product Name must be at least 3 characters";
+                }
+                else if (value.Length > 20)
+                {
+                    ValidationMessage = "Product Name must be more than 20 characters";
+                }
+                else {
+                    productName = value?.Trim();
+                }
+            }
         }
         private string description;
 
@@ -81,7 +104,13 @@ namespace Acme.Biz
                 }
             set { productVendor = value; }
         }
-        
+
+        public string ProductCategory { get; set; } = "Tools";
+
+        public int SequnceNumber { get; set; } = 1;
+
+        public string ValidationMessage { get; private set; }
+
         public string SayHello()
         {
             //var vendor = new Vendor();
