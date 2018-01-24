@@ -109,6 +109,8 @@ namespace Acme.Biz
 
         public int SequnceNumber { get; set; } = 1;
 
+        public string ProductCode => this.SequnceNumber +"-"+ this.ProductCategory;
+
         public string ValidationMessage { get; private set; }
 
         public string SayHello()
