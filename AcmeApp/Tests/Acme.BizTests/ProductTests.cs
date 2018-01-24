@@ -215,6 +215,7 @@ namespace Acme.BizTests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod()]
         public void SequenceNumber_NewValue()
         {
@@ -224,6 +225,20 @@ namespace Acme.BizTests
             var expected = 3;
             //Act
             var actual = currentProduct.SequnceNumber;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void ProductCode_Check()
+        {
+            //Assign
+            var currentProduct = new Product();
+            currentProduct.SequnceNumber = 1;
+            currentProduct.ProductCategory = "Tools";
+            var expected = "1-Tools";
+            //Act
+            var actual = currentProduct.ProductCode;
             //Assert
             Assert.AreEqual(expected, actual);
         }
