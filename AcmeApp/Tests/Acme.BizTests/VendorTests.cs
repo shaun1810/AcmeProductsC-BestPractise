@@ -70,5 +70,34 @@ namespace Acme.Biz.Tests
             Assert.AreEqual(expected.Success, actual.Success);
             Assert.AreEqual(expected.Message, actual.Message);
         }
+
+        [TestMethod()]
+        public void PlaceOrderTest_2Parameters()
+        {
+            //Arrange
+            var vendor = new Vendor();
+            var product = new Product(1, "Saw", "");
+            var expected = new OperationResult(true, "Order from Acme Inc\r\nProduct: 1-Tools\r\nQuantity: 1" + "\r\nDeliver By: 25/10/2019");
+            //Act
+            var actual = vendor.PlaceOrder(product, 1, new DateTimeOffset(2019, 10, 25, 0, 0, 0, new TimeSpan(-7, 0, 0)));
+            //Assert
+            Assert.AreEqual(expected.Success, actual.Success);
+            Assert.AreEqual(expected.Message, actual.Message);
+        }
+
+        [TestMethod()]
+        public void PlaceOrderTest_3Parameters()
+        {
+            //Arrange
+            var vendor = new Vendor();
+            var product = new Product(1, "Saw", "");
+            var expected = new OperationResult(true, "Order from Acme Inc\r\nProduct: 1-Tools\r\nQuantity: 1" + "\r\nDeliver By: 25/10/2019" + "\r\nInstructions:Chain Saw");
+            //Act
+            var actual = vendor.PlaceOrder(product, 1, new DateTimeOffset(2019, 10, 25, 0, 0, 0, new TimeSpan(-7, 0, 0)), "Chain Saw");
+            //Assert
+            Assert.AreEqual(expected.Success, actual.Success);
+            Assert.AreEqual(expected.Message, actual.Message);
+        }
+
     }
 }

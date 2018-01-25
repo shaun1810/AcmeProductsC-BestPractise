@@ -17,7 +17,6 @@ namespace Acme.Biz
         public const double inchesInMetre = 39.37;
         public readonly decimal MinimumPrice;
 
-
         public Product()
         {
             this.productVendor = new Vendor();
@@ -38,6 +37,14 @@ namespace Acme.Biz
             //this.productVendor = new Vendor();
             Console.WriteLine("Product instance has a name: " +
                                 ProductName);
+        }
+
+        private decimal productCost;
+
+        public decimal ProductCost
+        {
+            get { return productCost; }
+            set { productCost = value; }
         }
 
         private DateTime? availabilityDate;
@@ -125,6 +132,11 @@ namespace Acme.Biz
             return "Hello " + ProductName +
                     " (" + ProductId + "): " +
                     Description + " Available on: " + AvailabilityDate?.ToShortDateString();
+        }
+
+        public override string ToString()
+        {
+            return this.ProductName + " (" + this.productId + ")";
         }
 
     }
