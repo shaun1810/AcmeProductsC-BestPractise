@@ -15,19 +15,19 @@ namespace Acme.Biz
         public int VendorId { get; set; }
         public string CompanyName { get; set; }
         public string Email { get; set; }
-     
-         
-             
+        public enum IncludeAddress {yes,no};
+        public enum SendCopy {yes,no};
+                                
        /// <summary>
        /// Sends a product order to the vendor
        /// </summary>
        /// <param name="product"></param>
        /// <param name="quantity"></param>
        /// <returns></returns>
-       public OperationResult PlaceOrder(Product product, int quantity)
+     /*  public OperationResult PlaceOrder(Product product, int quantity)
         {
             return PlaceOrder(product, quantity, null, null);
-        }
+        } */
 
         /// <summary>
         /// Sends a product order to the vendor Overload for delievery date
@@ -36,10 +36,10 @@ namespace Acme.Biz
         /// <param name="quantity"></param>
         /// <param name="deliverBy"></param>
         /// <returns></returns>
-        public OperationResult PlaceOrder(Product product, int quantity, DateTimeOffset? deliverBy)
+        /*public OperationResult PlaceOrder(Product product, int quantity, DateTimeOffset? deliverBy)
         {
             return PlaceOrder(product, quantity, deliverBy, null);
-        }
+        }*/
 
         /// <summary>
         /// Sends a product order to the vendor Overload for delievery date
@@ -49,7 +49,7 @@ namespace Acme.Biz
         /// <param name="deliverBy"></param>
         /// <param name="instructions"></param>
         /// <returns></returns>
-        public OperationResult PlaceOrder(Product product, int quantity, DateTimeOffset? deliverBy, string instructions)
+        public OperationResult PlaceOrder(Product product, int quantity, DateTimeOffset? deliverBy= null, string instructions = "Standard Delivery")
         {
             if (product == null)
                 throw new ArgumentNullException(nameof(product));
@@ -88,6 +88,16 @@ namespace Acme.Biz
             return operationResult;
         }
 
+       public OperationResult PlaceOrder(Product product, int quantity, IncludeAddress includeAddress, SendCopy sendCopy)
+        {
+            var orderText = "Test";
+            if (includeAddress == IncludeAddress.yes) orderText += " With Address";
+            if (sendCopy == SendCopy.yes) orderText += " With Copy";
+
+            var operationResult = new OperationResult(true, orderText);
+            return operationResult;
+        } 
+        
         /// <summary>
         /// Sends an email to welcome a new vendor.
         /// </summary>

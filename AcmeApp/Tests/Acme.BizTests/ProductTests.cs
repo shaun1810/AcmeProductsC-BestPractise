@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acme.Common;
 
 namespace Acme.BizTests
 {
@@ -242,5 +243,20 @@ namespace Acme.BizTests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void ProductPrice_Check()
+        {
+            //Assign
+            var product = new Product(50, "Saw", "");
+            product.ProductCost = 50;
+            var expected = 55m;
+            //Act
+            var actual = product.CalculatedSuggestedPrice(10m);
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+     
+        }
     }
-}

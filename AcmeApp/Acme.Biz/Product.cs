@@ -58,8 +58,6 @@ namespace Acme.Biz
             set { availabilityDate = value; }
         }
 
-
-
         private string productName;
 
         public string ProductName
@@ -120,6 +118,10 @@ namespace Acme.Biz
 
         public string ValidationMessage { get; private set; }
 
+        public decimal CalculatedSuggestedPrice(decimal markupPercent) =>
+             this.ProductCost + (this.ProductCost * markupPercent / 100);
+
+   
         public string SayHello()
         {
             //var vendor = new Vendor();
@@ -134,10 +136,7 @@ namespace Acme.Biz
                     Description + " Available on: " + AvailabilityDate?.ToShortDateString();
         }
 
-        public override string ToString()
-        {
-            return this.ProductName + " (" + this.productId + ")";
-        }
-
+        public override string ToString() =>
+             this.ProductName + " (" + this.productId + ")";      
     }
 }
