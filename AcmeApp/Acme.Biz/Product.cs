@@ -114,13 +114,12 @@ namespace Acme.Biz
 
         public int SequnceNumber { get; set; } = 1;
 
-        public string ProductCode => this.SequnceNumber +"-"+ this.ProductCategory;
+        public string ProductCode => $"{this.SequnceNumber:0000}-{this.ProductCategory}"; 
 
         public string ValidationMessage { get; private set; }
 
         public decimal CalculatedSuggestedPrice(decimal markupPercent) =>
              this.ProductCost + (this.ProductCost * markupPercent / 100);
-
    
         public string SayHello()
         {
